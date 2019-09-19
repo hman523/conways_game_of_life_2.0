@@ -1,19 +1,20 @@
 extern crate rand;
 use rand::Rng;
 
-const SIZE: usize = 20;
+const SIZEX: usize = 50;
+const SIZEY: usize = 20;
 
 pub struct Board {
-	board: [[bool; SIZE]; SIZE]
+	board: [[bool; SIZEX]; SIZEY]
 }
 
 impl Board {
 	pub fn new() -> Board {
-		return Board { board: [[false; SIZE]; SIZE]};
+		return Board { board: [[false; SIZEX]; SIZEY]};
 	}
 	
 	pub fn next(&self) -> Board{
-		let mut newmap = [[false; SIZE]; SIZE];
+		let mut newmap = [[false; SIZEX]; SIZEY];
 		for (i, row) in self.board.iter().enumerate() {
 			for (j, _col) in row.iter().enumerate() {
 				newmap[i][j] = self.will_live(i, j);
@@ -34,19 +35,19 @@ impl Board {
 		if y != 0 && self.board[x][y-1]{
 			count += 1;
 		}
-		if y != 0 && x != SIZE-1 && self.board[x+1][y-1]{
+		if y != 0 && x != SIZEY-1 && self.board[x+1][y-1]{
 			count += 1;
 		}
-		if y != SIZE-1 && x != SIZE-1 && self.board[x+1][y+1]{
+		if y != SIZEX-1 && x != SIZEY-1 && self.board[x+1][y+1]{
 			count += 1;
 		}
-		if x != SIZE-1 && self.board[x+1][y]{
+		if x != SIZEY-1 && self.board[x+1][y]{
 			count += 1;
 		}
-		if x != 0 && y != SIZE-1 && self.board[x-1][y+1]{
+		if x != 0 && y != SIZEX-1 && self.board[x-1][y+1]{
 			count += 1;
 		}
-		if y != SIZE-1 && self.board[x][y+1]{
+		if y != SIZEX-1 && self.board[x][y+1]{
 			count += 1;
 		}
 
@@ -76,7 +77,7 @@ impl Board {
 	}
 
 	pub fn fill_random(&self) -> Board {
-		let mut newmap = [[false; SIZE]; SIZE];
+		let mut newmap = [[false; SIZEX]; SIZEY];
 		for (i, row) in self.board.iter().enumerate() {
 			for (j, _col) in row.iter().enumerate() {
 				newmap[i][j] = self.random();
