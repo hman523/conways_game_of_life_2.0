@@ -1,8 +1,8 @@
 extern crate rand;
 use rand::Rng;
 
-const SIZEX: usize = 50;
-const SIZEY: usize = 20;
+const SIZEX: usize = 80;
+const SIZEY: usize = 22;
 
 pub struct Board {
 	board: [[bool; SIZEX]; SIZEY]
