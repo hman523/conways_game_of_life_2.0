@@ -1,5 +1,7 @@
 extern crate rand;
+extern crate colored;
 use rand::Rng;
+use colored::*;
 
 const SIZEX: usize = 80;
 const SIZEY: usize = 22;
@@ -11,6 +13,14 @@ pub struct Board {
 impl Board {
 	pub fn new() -> Board {
 		return Board { board: [[false; SIZEX]; SIZEY]};
+	}
+	
+	pub fn count(&self) -> usize{
+		let mut count = 0;
+		for(_i, row) in self.board.iter().enumerate() {
+			count += row.iter().filter(|&x| *x == true).count();
+		}
+		return count;
 	}
 	
 	pub fn next(&self) -> Board{
@@ -92,7 +102,7 @@ impl Board {
 		for (_i, row) in self.board.iter().enumerate() {
 			for (_j, col) in row.iter().enumerate() {
 				if *col{
-					print!("#");
+					print!("{}", "#".green());
 				}
 				else{
 					print!(" ");
